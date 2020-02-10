@@ -12,18 +12,6 @@ import Router from 'next/router';
 import Footer from '../components/Footer';
 import fetch from 'isomorphic-unfetch';
 import EntryUtils from '../utils/EntryUtils.js';
-import { setCookie } from '../utils/cookie';
-
-const receitas = [
-  {id: 1, title: 'Cuscuz com leite', image: 'https://img.itdg.com.br/images/recipes/000/134/890/64027/64027_original.jpg', tags: ['bom', 'barato', 'nordeste'], description: 'Melhor comida ever Melhor comida ever Melhor comida ever Melhor comida ever Melhor comida ever', chef: 'Alesson'},
-  {id: 2, title: 'Bolo', image: 'https://img.itdg.com.br/images/recipes/000/134/890/64027/64027_original.jpg', tags: ['bom', 'barato', 'nordeste'], description: 'Melhor comida ever', chef: 'Alesson'},
-  {id: 3, title: 'Macaxeira com charque assada', image: 'https://img.itdg.com.br/images/recipes/000/134/890/64027/64027_original.jpg', tags: ['bom', 'barato', 'nordeste'], description: 'Melhor comida ever', chef: 'Alesson'},
-  {id: 4, title: 'Strogonoff', image: 'https://img.itdg.com.br/images/recipes/000/134/890/64027/64027_original.jpg', tags: ['bom', 'barato', 'nordeste'], description: 'Melhor comida ever', chef: 'Alesson'},
-  {id: 5, title: 'Feijoada', image: 'https://img.itdg.com.br/images/recipes/000/134/890/64027/64027_original.jpg', tags: ['bom', 'barato', 'nordeste'], description: 'Melhor comida ever', chef: 'Alesson'},
-  {id: 6, title: 'Macarronada', image: 'https://img.itdg.com.br/images/recipes/000/134/890/64027/64027_original.jpg', tags: ['bom', 'barato', 'nordeste'], description: 'Melhor comida ever', chef: 'Alesson'},
-  {id: 7, title: 'Filé', image: 'https://img.itdg.com.br/images/recipes/000/134/890/64027/64027_original.jpg', tags: ['bom', 'barato', 'nordeste'], description: 'Melhor comida ever', chef: 'Alesson'},
-  {id: 8, title: 'Arroz', image: 'https://img.itdg.com.br/images/recipes/000/134/890/64027/64027_original.jpg', tags: ['bom', 'barato', 'nordeste'], description: 'Melhor comida ever', chef: 'Alesson'},
-]
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -65,9 +53,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Index = ({recipes, assets}) => {
-   console.log( 'assets', assets);
-
+const Index = ({ recipes }) => {
   const classes = useStyles();
   return (
     <Grid item container justify="center" direction="column" className={classes.container}>
@@ -85,10 +71,7 @@ const Index = ({recipes, assets}) => {
         <Grid item container className={classes.list} alignItems="center" direction="row" spacing={2}>
           {recipes.map((recipe) => 
             <Grid item className={classes.listItem} >
-              <Card className={classes.root} onClick={() => {
-                setCookie(`recipes`, recipe);
-                Router.push("/recipes/[id]", `/recipes/${recipe.id}`)
-                }}>
+              <Card className={classes.root} onClick={() => Router.push("/recipes/[id]", `/recipes/${recipe.id}`)}>
                 <CardActionArea>
                   <CardMedia
                     className={classes.media}
@@ -128,8 +111,7 @@ Index.getInitialProps = async () => {
   entriesItems = EntryUtils.entriesToArray(entriesItems, assets);
 
   return {
-    recipes: entriesItems.recipes,
-    assets
+    recipes: entriesItems.recipes
   };
   
 };

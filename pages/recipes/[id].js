@@ -13,8 +13,6 @@ import Footer from '../../components/Footer';
 import EntryUtils from '../../utils/EntryUtils.js';
 import fetch from 'isomorphic-unfetch';
 
-const recipe = {id: 1, title: 'Cuscuz com leite', image: 'https://img.itdg.com.br/images/recipes/000/134/890/64027/64027_original.jpg', tags: ['bom', 'barato', 'nordeste'], description: 'Melhor comida ever Melhor comida ever Melhor comida ever Melhor comida ever Melhor comida ever', chef: 'Alesson'};
-
 const useStyles = makeStyles(theme => ({
   container: {
     height: '100%',
